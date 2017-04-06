@@ -1,19 +1,44 @@
 
 var snake = document.getElementById('snake');
 var seccion = document.getElementById('seccion');
-var x=0;
-var y=0;
-var i=0;
-
+var xi=0;
+var yi=0;
+var xf=400;
+var yf=400;
 
 function moverDerecha(){
-	snake.style.marginLeft = "100px"	
+	if(xi<xf){
+		snake.style.marginLeft = ((xi+=100) +"px").toString();
+	} else{
+		snake.style.marginLeft = "400px"
+		alert("perdiste")
+	}
+}
+function moverIzq(){
+	if(xf>xi){
+		snake.style.marginLeft = ((xi-=100) +"px").toString();
+	} else{
+		snake.style.marginLeft = "0px"
+		alert("perdiste")
+	}
 }
 function moverAbajo(){
-	snake.style.marginTop = "100px"
+	if(yi<yf){
+		snake.style.marginTop = ((yi+=100) +"px").toString();
+	} else{
+		snake.style.marginTop = "400px"
+		alert("perdiste")
+	}
+}
+function moverArriba(){
+	if(yf>yi){
+		snake.style.marginTop = ((yi-=100) +"px").toString();
+	} else{
+		snake.style.marginTop = "0px"
+		alert("perdiste")
+	}
 }
 
-
 //EVENTOS
-document.addEventListener("click", moverDerecha)
-document.addEventListener("keypress", moverAbajo)
+document.addEventListener("click", moverAbajo)
+document.addEventListener("keypress", moverArriba)
