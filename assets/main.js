@@ -8,41 +8,44 @@ var teclas = {
 var snake = document.getElementById('snake');
 var xi=0;
 var yi=0;
-var xf=400;
-var yf=400;
+var i=0;
+var tope=400;
 var constante = 100;
 
+//EVENTOS
+document.addEventListener("keydown", teclaPulsada);
+
 function moverDerecha(){
-	if(xi<xf){
-		snake.style.marginLeft = ((xi+=constante) +"px").toString();
-	} else{
-		snake.style.marginLeft = "400px"
-		perdiste()
-	}
-}
-function moverIzq(){
-	if(xf>xi){
-		snake.style.marginLeft = ((xi-=constante) +"px").toString();
-	} else{
-		perdiste()
-	}
-}
-function moverAbajo(){
-	if(yi<yf){
-		snake.style.marginTop = ((yi+=constante) +"px").toString();
-	} else{
-		perdiste()
-	}
-}
-function moverArriba(){
-	if(yf>yi){
-		snake.style.marginTop = ((yi-=constante) +"px").toString();
-	} else{
-		perdiste()
-	}
-}
+ 	if(xi<tope){
+ 		snake.style.marginLeft = ((xi+=100) +"px").toString();
+ 	} else{
+ 		perdiste()
+ 	}
+ }
+ function moverIzq(){
+ 	if(xi>i){
+ 		snake.style.marginLeft = ((xi-=100) +"px").toString();
+ 	} else{
+ 		perdiste()
+ 	}
+ }
+ function moverAbajo(){
+ 	if(yi<tope){
+ 		snake.style.marginTop = ((yi+=100) +"px").toString();
+ 	} else{
+ 		perdiste()
+ 	}
+ }
+ function moverArriba(){
+ 	if(yi>i){
+ 		snake.style.marginTop = ((yi-=100) +"px").toString();
+ 	} else{
+ 		perdiste()
+ 	}
+ }
 function perdiste(){
-	alert("perdiste")
+	alert("perdiste");
+	document.removeEventListener("keydown", teclaPulsada);
 }
 function teclaPulsada(evento){
 	console.log('evento')
@@ -59,11 +62,15 @@ function teclaPulsada(evento){
     case teclas.RIGHT:
     	moverDerecha()
     break;
+    default:
+    	alert('Presiona las teclas correctas');
+    break;
   }
 		
 }
-document.addEventListener("keydown", teclaPulsada)
 
 
-//EVENTOS
+
+
+
 
