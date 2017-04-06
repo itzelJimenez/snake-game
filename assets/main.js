@@ -1,3 +1,5 @@
+var intervalId = null;
+
 //Variables teclas
 var teclas = {
   UP: 38,
@@ -14,55 +16,56 @@ var tope=400;
 var constante = 100;
 //Variable botón reiniciar
 var boton = document.getElementById('boton');
+
+
 //Funciones que darán movimiento a Snake
-function moverDerecha(){
+var moverDerecha= function(){
  	if(xi<tope){
  		snake.style.marginLeft = ((xi+=100) +"px").toString();
  	} else{
- 		perdiste()
+ 		clearInterval(intervalId)
  	}
  }
- function moverIzq(){
+ var moverIzq = function(){
  	if(xi>i){
  		snake.style.marginLeft = ((xi-=100) +"px").toString();
  	} else{
- 		perdiste()
+ 		clearInterval(intervalId)
  	}
  }
- function moverAbajo(){
+ var moverAbajo = function (){
  	if(yi<tope){
  		snake.style.marginTop = ((yi+=100) +"px").toString();
  	} else{
- 		perdiste()
+ 		clearInterval(intervalId)
  	}
  }
- function moverArriba(){
+ var moverArriba = function(){
  	if(yi>i){
  		snake.style.marginTop = ((yi-=100) +"px").toString();
  	} else{
- 		perdiste()
+ 		clearInterval(intervalId)
  	}
  }
  //Función perdiste
 function perdiste(){
 	alert("perdiste");
-	document.removeEventListener("keydown", teclaPulsada);
 }
 //Función que accede a las teclas y les asigna comportamiento.
 function teclaPulsada(evento){
 	console.log('evento')
 		switch(evento.keyCode){
     case teclas.UP:
-    	moverArriba()
+    	intervalId = setInterval(moverArriba, 800)
     break;
     case teclas.DOWN:
-    	moverAbajo()
+    	intervalId = setInterval(moverAbajo, 800)
     break;
     case teclas.LEFT:
-    	moverIzq()
+    	intervalId = setInterval(moverIzq, 800)
     break;
     case teclas.RIGHT:
-    	moverDerecha()
+    	intervalId = setInterval(moverDerecha, 800)
     break;
   }
 }
@@ -71,6 +74,11 @@ function reiniciar(){
 	snake.style.marginLeft = (i +"px").toString();
 	snake.style.marginTop = (i + "px").toString();
 }
+
+function detener(){
+	document.removeEventListener("keydown", teclaPulsada);
+}
+
 
 
 
